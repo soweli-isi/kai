@@ -74,6 +74,7 @@ const deraniLayout = new Map([
   ["[", "󱛘"],
   ["]", "󱛙"],
   ["=", "󱛚"],
+  ["ı", "󱚹"]
 ]);
 
 const fallingDiphthongs = new Map([

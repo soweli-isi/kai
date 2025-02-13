@@ -9,18 +9,27 @@
   <meta name="description" content="kaırom po Tóaqzu">
   <meta name="language" content="Toaq">
   <link href='https://fonts.googleapis.com/css?family=Noto+Sans' rel='stylesheet' type='text/css'>
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
   <title>kaı</title>
   <style>
     :root {
-      --peq: #f8f8fb;
-      --puim: #000000d0;
-      --boaq: #d8e8f8;
-      --cai: #197A92;
+      color-scheme: light dark;
+      --peq: light-dark(#f8f8fb, #444448);
+      --puim: light-dark(#000000d0, #e0e0e0);
+      --boaq: light-dark(#d8e8f8, #333336);
+      --cioq: light-dark(#d8e8f8, #446688);
     }
 
     * {
       box-sizing: border-box;
+    }
+
+    button,
+    input,
+    select {
+      font-family: Derani, 'Noto Sans', sans-serif;
     }
 
     body {
@@ -33,7 +42,8 @@
 
     h1 {
       text-align: center;
-      padding: 1rem;
+      padding-bottom: 1rem;
+      font-weight: normal;
     }
 
     summary {
@@ -72,16 +82,10 @@
     }
 
     .soa kbd {
-      font-family: 'Monaco', 'Consolas', 'DejaVu Sans Mono', monospace;
-      background: rgba(0, 0, 0, 0.1);
+      font-family: Derani, 'Monaco', 'Consolas', 'DejaVu Sans Mono', monospace;
+      background: light-dark(rgba(0, 0, 0, 0.1), #444444);
       padding: 1px 4px;
       border-radius: 4px;
-    }
-
-    .soa samp {
-      font-family: inherit;
-      font-weight: bold;
-      color: var(--cai);
     }
 
     @font-face {
@@ -100,12 +104,14 @@
       margin-bottom: 0.5em;
     }
 
-    .actions > button {
+    .actions>button {
       padding: 4px 8px;
     }
 
     .hint {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5em;
     }
 
     .hint+.hint {
@@ -131,22 +137,27 @@
       justify-content: center;
       align-items: center;
       font-size: 16px;
-      background: var(--boaq);
+      background: var(--cioq);
       text-align: center;
-      letter-spacing: -1px;
       height: 32px;
     }
 
     .key-wide {
-      background: #f0d0e0;
+      background: light-dark(#f0d0e0, #884466);
     }
 
     .key-tone {
-      background: #f0d0e0;
+      background: light-dark(#f0d0e0, #884466);
     }
 
     .key-unlearned {
-      background: #eee;
+      background: light-dark(#eee, #666);
+    }
+
+    .stack {
+      display: inline-flex;
+      flex-direction: column;
+      font-size: 80%;
     }
 
     @media screen and (max-width: 600px) {
@@ -164,11 +175,11 @@
 <body>
   <main>
     <div class="soa">
-      <h1>kaı</h1>
+      <h1>Kaı</h1>
       <div class="hints">
         <div class="hint">
-          <kbd>2 3 4</kbd>
-          <span>tones</span>
+          <kbd>a2 a3 a4</kbd>
+          <span>á ä â</span>
         </div>
         <div class="hint">
           <kbd>w0 i0 &lt;&lt;</kbd>
@@ -177,8 +188,12 @@
         <div class="hint">
           <kbd><span class="ctrl-plus">Ctrl+</span>/</kbd>
           <label for="derani-mode">
-            <input id="derani-mode" type="checkbox" onchange="toggleDeraniMode()" />
-            Derani mode
+            <select name="derani-mode" id="derani-mode" onchange="setDeraniMode(this)">
+              <option value="">Latına</option>
+              <option value="official">Deranı</option>
+              <option value="reform">Neıranı</option>
+            </select>
+            <a href="https://toaq.me/Derani_diphthong_reform">?</a>
           </label>
         </div>
       </div>
@@ -186,10 +201,11 @@
     <div id="keyboard">
     </div>
     <div class="actions">
-      <button onclick="clearTextbox()">Clear</button>
-      <button onclick="copyTextbox()">Copy</button>
+      <button onclick="clearTextbox()"><i class="fa fa-xmark"></i> Sheaja</button>
+      <button onclick="prettify()"><i class="fa fa-wand-magic-sparkles"></i> Som</button>
+      <button id="kopinua" onclick="copyTextbox()"><i class="far fa-copy"></i> Kopınua</button>
     </div>
-    <textarea id="kai" rows="20" autofocus placeholder="Kaı súq doa" spellcheck="false"></textarea>
+    <textarea id="kai" rows="20" autofocus placeholder="Kaı súq sá doa" spellcheck="false"></textarea>
   </main>
   <script src="./kaichuo.js"></script>
   <script>
